@@ -1,24 +1,59 @@
 <head>
-    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap-responsive.min.css" />
+	<link type="text/css" rel="stylesheet" href="assets/css/main.css" />
+	<!-- <link type="text/css" rel="stylesheet" href="stylesheets/main.css" /> -->
+	<script language="javascript" type="text/javascript">
+	</script>
 </head>
 <html>
   <body>
-  <h1>Guestbook</h1>
-    {% for greeting in greetings %}
-      {% if greeting.author %}
-        <b>{{ greeting.author }}</b> wrote:
-      {% else %}
-        An anonymous person wrote:
-      {% endif %}
-      <blockquote>{{ greeting.content|escape }}</blockquote>
-    {% endfor %}
+  
+	<div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="navbar-inner">
+		<div class="container-fluid">
+		  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a class="brand" href="#">Guestbook</a>
+		  <div class="nav-collapse collapse">
+			<!-- <p class="navbar-text pull-right">
+			  Logged in as <a href="#" class="navbar-link">Username</a>
+			</p>
+			<ul class="nav">
+			  <li class="active"><a href="#">Home</a></li>
+			  <li><a href="#about">About</a></li>
+			  <li><a href="#contact">Contact</a></li>
+			</ul> -->
+		  </div><!--/.nav-collapse -->
+		</div>
+	  </div>
+	</div>
+  
+	<div class="container-fluid">
+		<!-- <h1>Guestbook</h1> -->
+		<form action="/sign" method="post">
+		  <div><textarea name="content" rows="3" cols="60" id="content"></textarea></div>
+		  <div><input type="submit" name="Submit" value="Sign Guestbook"></div>
+		</form>
+		<a href="{{ url }}">{{ url_linktext }}</a>
+		<br>
+		<br>
+		{% for greeting in greetings %}
+		  {% if greeting.author %}
+			<b>{{ greeting.author }}</b> wrote:
+		  {% else %}
+			An anonymous person wrote:
+		  {% endif %}
+		  <blockquote>{{ greeting.content|escape }}</blockquote>
+		{% endfor %}
+	</div>
 
-    <form action="/sign" method="post">
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-      <div><input type="submit" value="Sign Guestbook"></div>
-    </form>
-
-    <a href="{{ url }}">{{ url_linktext }}</a>
-
+	
+	<script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
